@@ -31,11 +31,19 @@ lvim.plugins = {
       })
     end,
   },
-  -- {
-  --   "simnalamburt/vim-mundo"
-  -- }
+  {
+    "simnalamburt/vim-mundo"
+  },
+  -- Scrolling
+  {
+    "karb94/neoscroll.nvim",
+    config = function()
+      require("plugins.neoscroll").setup()
+    end,
+  },
   -- {
   --   "folke/trouble.nvim",
   --   cmd = "TroubleToggle",
   -- },
 }
+

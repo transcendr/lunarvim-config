@@ -30,6 +30,8 @@ lvim.keys.insert_mode["<C-k>"] = "<ESC><C-u>i"
 
 ---- MODE: Normal
 ---- ============================================================
+--require("lvim.core.telescope.custom-finders").find_project_files
+-- vim.keymap.del("n", "f")
 lvim.keys.normal_mode[";"]          = ":<right><left>"
 lvim.keys.normal_mode["<C-s>"]      = ":w<cr>"
 lvim.keys.normal_mode["<Tab>"]      = ":BufferLineCycleNext<CR>"
@@ -45,6 +47,14 @@ lvim.keys.normal_mode["<C-l>"]      = "<cmd>lua require('harpoon.ui').nav_file(3
 lvim.keys.normal_mode["<C-;>"]      = "<cmd>lua require('harpoon.ui').nav_file(4) <CR>"
 lvim.keys.normal_mode["ma"]         = "<cmd>lua require('harpoon.mark').add_file()<CR>"
 lvim.keys.normal_mode["<leader>pw"] = "<cmd>lua require('telescope.builtin').grep_string({ initial_mode = 'normal' }) <CR>"
+--lvim.keys.normal_mode["<C-p>"]      = "<cmd> Telescope find_files <CR>"
+lvim.keys.normal_mode["<C-p>"]      = "<cmd>lua require('lvim.core.telescope.custom-finders').find_project_files() <CR>"
+lvim.keys.normal_mode["<S-p>"]      = "<cmd> Telescope live_grep <CR>" -- grep project files
+lvim.keys.normal_mode["<leader>fa"] = "<cmd> Telescope find_files follow=true no_ignore=true hidden=true <CR>"
+lvim.keys.normal_mode["<leader>fe"] = "<cmd> Telescope buffers <CR>"
+lvim.keys.normal_mode["<leader>f?"] = "<cmd> Telescope help_tags <CR>"
+lvim.keys.normal_mode["<leader>fh"] = "<cmd> Telescope oldfiles <CR>"
+lvim.keys.normal_mode["<leader>km"] = "<cmd> Telescope keymaps <CR>"
 
 ---- MODE: Visual
 ---- ============================================================
@@ -55,12 +65,11 @@ lvim.keys.visual_mode["<C-k>"] = "<C-w>k"
 
 ---- MODE: Terminal
 ---- ============================================================
-lvim.keys.term_mode["<C-l>"] = "clear<CR>"
-lvim.keys.term_mode["<C-v>"] = "<C-\\><C-N>pi"
+lvim.keys.term_mode["<C-l>"]      = "clear<CR>"
+lvim.keys.term_mode["<C-v>"]      = "<C-\\><C-N>pi"
 lvim.keys.term_mode["<leader>tn"] = "tmux<cr>"
 lvim.keys.term_mode["<leader>ta"] = "tmux at<cr>"
 lvim.keys.term_mode["<leader>tl"] = "tmux ls<cr>"
-
 
 -- Plugin Keymaps: Telescope
 -- ============================================================
@@ -80,6 +89,5 @@ lvim.builtin.telescope.defaults.mappings = {
     [":q<cr>"] = actions.close,
     ["qq"]     = actions.close,
     ["<C-j>"]  = actions.move_selection_next,
-    ["<C-k>"]  = actions.move_selection_previous,
   },
 }
